@@ -80,3 +80,8 @@
   - Good if you were to use it outside of Python
 - Both provide the same data
 - Tutorials at: https://sagecontinuum.org/docs/tutorials/accessing-data
+
+### Creating an app and publishing it to Sage
+
+- Follow instructions here: https://sagecontinuum.org/docs/category/edge-apps
+
