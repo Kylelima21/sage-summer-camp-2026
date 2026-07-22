@@ -5,7 +5,7 @@
 ### Deliverables
 
 - Come up with a problem to tackle
-- Create a GitHub repository called “sage-summer-camp-2026
+- Create a GitHub repository called “sage-summer-camp-2026"
 - With a classroom-notes.md file
 - 5-min presentation
 - project.md overview of your work for the Sage website
