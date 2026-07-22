@@ -85,3 +85,127 @@
 
 - Follow instructions here: https://sagecontinuum.org/docs/category/edge-apps
 
+
+
+# Day 2
+
+### MCPs - Presented by Peter Lebiedzinksi
+
+- Model Context Protocol
+- An MCP is an open source standard for connecting AI applications to external systems
+- A way for a LLM to pull an external service or code to do some function
+- Uses JSON-RPC 2.0 data protocol
+- Sage has an MCP
+  - Testbed user request something, MCP decides if it needs to reach up to the sage cloud to fulfill the request
+  - Can set it up using instructions at: https://github.com/sagemcp/sagemcp
+- Allows you to write programs, interact and find data, and control Sage using natural language
+- MCP is basically a translator from english (aka natural language) to specific lines of code to do some function
+
+### HERMES - Presented by Pete
+
+- Benefit of using tmux is that the agent continues to run in the background despite you being connected or not
+- Could run all night if you tell it to and it needs to
+- Compaction: Sessions can only be so long, there’s a max point. 
+  - If you hit 100% compaction, the agent will start a new session and try to remember things from the previous session, but it’s not very good/very messy.
+  - Before you hit 100% you should write out a file from all the learnings and then in the new session you can open that file to keep going
+- Economizing the ins and outs of agents is important as there are limitations to the amount you can use (tokens)
+
+
+## Basics of Deep Learning by Chris Lee
+
+### Deep Learning Mindset
+
+- We are trying to create pattern recognition systems
+- More example = better results
+- It doesn’t give absolute truth, just probabilities
+- Think of predictions as a distribution
+
+### Anatomy of a Neuron
+
+- Neuron - its a linear function - input -> function -> output
+  - Other terms = bias and weights
+  - A neuron is the input, bias, weights, linear function, and activation function
+  - Used to create functions that can separate data, predict patterns, etc.
+- To get to a neuron with N inputs, its the sum of all inputs and weights then plus bias
+- Depth = how many layers (hidden and outputs, not including input layer)
+- Width = how many inputs
+- Another way to talk about inputs is dimensions or features
+- Activation functions - hidden layer
+  - Standard to use ReLU
+  - Avoid non-conventional activations
+- Activation functions - regression output layer
+  - Regression tasks are predicting answers, the are continuous (not discrete) scores
+- Activation functions - classification output layer
+  - Logits are the raw predictions
+- Universal Approximation Theorem
+  - Neural networks can approximate any continuous function
+  - Every neuron we add in the hidden layer can create a bend
+- Why not make the network infinitely wide
+  - Generalization
+  - Scalability
+- The network cannot effectively predict what it doesn’t have information about
+
+### Dataset Curation
+
+- Data should be:
+  - Relevant to task
+  - Sufficient quantity of examples
+  - Diversity
+  - Accurately labeled
+  - Representative/Balanced
+  - No contamination
+- Examples are combinations of features (inputs) and targets (labels)
+  - Typically multiple features used to predict targets
+  - Must be correlation
+- Data splits
+  - Training data often 70%
+  - Validation data often 15%
+  - Test data often 15% - to get an idea of how well it performs
+    - Do NOT make decisions based of this or it becomes another validation dataset
+  - We typically want the splits to be stratified
+  - Imbalanced datasets can skew test results
+  - Concept drift = change in relationship between input and target
+  - Data drift = change in input distribution (move sensor locations to very different climate)
+  - Label drift = change in target distribution
+
+### Preprocessing
+
+- Cleaning
+  - Remove dups
+  - Handle missing values
+  - Address inconsistencies and outliers 
+  - Normalization
+  - Convert categorical variables into numbers (embeddings)
+- Data augmentation
+  - When you have insufficient count of examples you might be able to augment 
+
+
+### Training, Evaluation, Learning
+
+- Training
+  - Types of training
+    - Reinforcement - Robot interacts with environment and is rewarded or penalized
+    - Supervised learning - learning with features and labeled data (targets)
+    - Unsupervised learning - learning without labeled data
+  - Process for neural network
+    - Weight initialization
+      - Zero, random, xavier, etc
+    - Step 1: Forward pass
+    - Step 2: Calculate loss
+    - Step 3: Backward pass
+    - Step 4: Optimizer/Update weights
+  - One epoch is one full pass through all the steps above
+- Evaluation:
+  - Classification
+    - Accuracy, precision, recall, F1 score
+  - Regression
+    - RMSE, MAW, R^2
+- Learning
+  - Point of divergence from something to something = overfitting
+  - Early stopping prevents overfitting 
+- Mini Batching
+  - For each epoch shuffle and split dataset into bathes and update models after each
+- Hyperparameters
+  - Tunable values to adjust
+  - Automation
+    - Random search, grid search, bayesian optimization, etc
