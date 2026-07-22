@@ -209,3 +209,76 @@
   - Tunable values to adjust
   - Automation
     - Random search, grid search, bayesian optimization, etc
+
+
+# Day 3
+
+## Foundation Models and Inference at the Edge by Matt Thompson
+
+### Imageomics
+
+Focused on understanding biology of organisms, particularly traits and observable phenotypes from images
+Ohio State, NSF
+Goal is to harness data that is diverse, massive, and multimodal
+We are putting attention in areas that aren’t correlated to areas of highest biodiversity (brazil for example)
+
+### BioCLIP
+
+- BioCLIP is a foundation model for species classification
+  - BioCLIP 2.5 trained on 233M images, 1M unique taxa, and fits within 4GB of memory
+  - Working on BioCLIP 3 at the moment
+  - CLIP = contrastive language image pretraining
+- Training scale leads to emergent properties (unsupervised ‘knowledge’)
+  - Embedding space is capturing lots of information that we don’t yet understand, and therefore might have really interesting applications and discoveries
+- AI and Science exhibits a bidirectional relationship - both can benefit and progress each other
+- BioCLIP is meant to be built on, not lived in
+  - Domain specialization:
+    - Continued pretraining
+    - Fine-tuning (full/param-efficient)
+    - Few-shot probing - train a classifier on embeddings from the model
+  - Development optimization
+    - Distillation - take an expert teaching model (BioCLIP 2.5) and use a smaller model trained on it
+    - Quantization - shrinking the model
+      - PTQ: Post-training quantization
+      - QAT: Quantization-aware training
+      - Can save memory and latency, but risks accuracy
+  - Edge constraints guiding design
+    - Hardware/physical limits
+      - power, bandwidth, storage, memory processing
+    - Science requirements 
+      - Latency minimums, decisions provenance
+    - Practical limitations
+      - Budget, remote troubleshooting
+- BioCLIP 2.5 was fine tuned for plant identification and they applied a phenology mask to improve prediction accuracy
+  - The fine-tuning though was very resource-intensive
+- Getting more out of a foundation model
+    - Zero-shot - one forward pass
+    - Probe suite - if it does well then the foundation model captures what you are looking for in embedding space. If not, additional fine tuning would likely be beneficial.
+    - LoRA
+    - Text tower only (LiT)
+    - Last k vision blocks
+    - Full model
+- How can we improve performance on a taxa of interest?
+  - https://github.com/Imageomics/sage-summer-2026-bioclip 
+  - Peromyscus example
+    - P. maniculatus and P. leucopus are hard to distinguish between
+      - Have range overlap and one is disease vector
+    - Raw embeddings may be better for training classification heads than normalized embeddings
+    - Using methods like few-shot approaches you can improve simpler, smaller models’ performance!
+
+
+## Sage Image Search by Francisco Lozano
+
+### Buzzwords
+
+- BM25 - keyword search
+- VLM - vision language model
+- Vector search - semantic, find results by comparing embeddings
+- Vector database - embeddings are stored in a vector database
+- HNSW Index
+
+### Sage Image Search 
+
+- A workflow that allows a researcher to use natural language to search for an image from the Sage databases
+- The Sage Image Search benchmarking toolkit enables reproducible, scalable evaluation
+- GitHub here: https://github.com/waggle-sensor/sage-nrp-image-search
