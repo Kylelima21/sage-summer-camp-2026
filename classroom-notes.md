@@ -282,3 +282,32 @@ We are putting attention in areas that aren’t correlated to areas of highest b
 - A workflow that allows a researcher to use natural language to search for an image from the Sage databases
 - The Sage Image Search benchmarking toolkit enables reproducible, scalable evaluation
 - GitHub here: https://github.com/waggle-sensor/sage-nrp-image-search
+
+
+# Day 4
+
+## National Data Platform by Pedro Ramonetti and Ismael Perez
+
+### Why is data so challenging to use
+- Fragmented access, disconnect between production/collection and sharing, need for scalable or specialized compute readiness, complexity of formats, etc.
+- NDP is a data ecosystem to promote collaboration, innovation and customizable use of data
+  - Facilitates data cataloging to make date FAIR and used at scale
+  - Provides collaborative workspaces
+  - Connects users to national cyberinfrastructure and cloud resources
+  - Enables development and deployment of AI-integrated workflows
+  - Offers tools for learning
+
+### NDP Overview
+- NDP is not a data repository, but does catalogue data sources to help connect users to existing data
+- Can search for data using the catalog tab
+- Can add data set using the “add to catalog” tab, all data request are approved by a human
+  - Providers of the data are expected to figure out hosting the data and upkeep with the metadata
+- A Workspace can be used as a sharing resource or a learning environment
+  - E.g., the jupyter notebooks that we worked with on Day 3
+  - Can create one to organize a project, notebook, and can share amount partners
+  - When you start a server, ensure you stop the server when you are done
+  - To stop go file > Hub Control Panel > stop server
+- CollabStudio
+  - Allows for collaborative work on a workspace across NDP
+  - Users must already be registered with NDP
+  - Can add a curated catalog to the workspace
