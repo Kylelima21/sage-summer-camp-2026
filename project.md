@@ -1,7 +1,8 @@
 # Exploring the Potential for Edge Computing to Collect Novel Biotic Interaction Data
-Kyle Lima
-klima@schoodicinstitute.org
-*University of Maine, Schoodic Institute at Acadia National Park*
+
+Kyle Lima </br>
+klima@schoodicinstitute.org </br>
+*University of Maine, Schoodic Institute at Acadia National Park* </br>
 
 
 ## Introduction
