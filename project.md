@@ -14,11 +14,17 @@ However, predicting biodiversity responses to global change remains challenging 
 Perhaps the greatest remaining challenge in predictive ecology is incorporating biotic interactions into models of biodiversity change. Although ecological theory recognizes species interactions as fundamental determinants of biodiversity, they are rarely incorporated into models because they are difficult to quantify consistently across broad spatial and temporal extents. While studies have shown the importance of biotic interactions on species distributions and community composition, we don’t understand how these effects operate at different scales, i.e. the Raunkiaeran shortfall, especially in relation to other drivers. Similarly, we don’t know how biotic interactions relate to other critical components of biodiversity distribution like geophysical characteristics (e.g., climate, roughness, topographic complexity, etc.) which inherently mediate the importance of biological drivers like biotic interactions.
 
 
-## The Work
+## Project Overview
 
-Here, we begin to explore the ability of AI to collect biotic interaction data by working with the Sage Grande Testbed and applying a simple example model at the edge. We compare two foundation models with a few different classification heads trained on the same data to perform the same task: classify an image to a certain biotic interaction type.
+This projects begins to explore the ability of AI to collect biotic interaction data by working with the Sage Grande Testbed and applying a simple example model at the edge. We compare two foundation models (BioCLIP and DINOv3) with a few different classification heads trained on the same data to perform the same task: classify an image to a certain biotic interaction type. We took the top model and published an application on a Sage Node to provide a proof of concept example classifying interactions from images at the edge.
 
-BISONN or Biotic Interactions with Sage Observations using Neural Networks is a project to start using AI tools to classify biotic interactions from camera data. This project, in its current state, is a proof of concept example and performance comparison for models attempting to classify biotic interactions.
+
+## Methods and Results
+
+
+## Future Directions
+
+The long-term goals are to integrate multiple sensors (acoustic recording units, video, image) to monitor for interactions more effectively and to develop a more powerful, well trained version of this application to classify more types of biotic interactions. We would also liek to scale data collection across the SGT network as well as integrate this with NEON sites.
 
 
 
