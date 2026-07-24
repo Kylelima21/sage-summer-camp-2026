@@ -311,3 +311,146 @@ We are putting attention in areas that aren’t correlated to areas of highest b
   - Allows for collaborative work on a workspace across NDP
   - Users must already be registered with NDP
   - Can add a curated catalog to the workspace
+
+
+# Day 5
+
+## Hardware by Raj Sankaran and Yongho Kim with Argonne
+
+### Sage Nodes for Edge Computing
+
+- Two forms of nodes
+  - Wild Node
+    - Ready for mounting outside 
+    - Easy to add sensors, PoE, USB, LoRaWAN
+    - PoE = Power over Ethernet
+  - Blade Server
+    - Rugged server for instrument huts, indoors
+    - Easy to add PoE sensors
+  - Waggle is the core platform
+- Why do we need an edge device?
+  - Computing - CPU/GPU SOC that is low-power
+  - Instruments - can add sensors and actuators
+  - Communications - external (WAN) and internal (LAN)
+  - Power - AC/DC power
+- What do we need in an edge device?
+  - Power and system management - operate under variety of conditions, remotely debug errors
+  - Fault tolerance and recovery - hardware fails and bugs in software
+  - System status
+  - Systems exist that handle these things - RCB 600 (modular power supply with safety features
+- Basics requirements for a node
+  - Always recover from faults and continue to run
+  - Call home and ask for help, restore communication 
+  - Gracefully degrade in performance, continue to operate, reduce/optimize operation to prolong lifespan, achieve minimum operation state
+  - Operate autonomously, prepare for comm latencies and blackouts
+- Wild Sage Node (first gen)
+  - 3ft tall, 2ft wide, 1ft deep, ~30lbs
+  - Extensive electrical and environmental testing conducted
+  - 2-layer system with computing, power, env conditioning, communication, and management components.
+  - Sage node interfaces
+    - Four SEN ports for PoE sensors
+    - One SEN port for USB
+
+### Sage Grande Testbed: The Next Generation Computing Node for Foundation AI
+
+- Thor - 128 GB unified memory
+- Thors perform as good as DGX Spark with larger models, though DGX performance is superior with smaller models
+- Thor-Blades are the indoor, software rack style node
+- Once nodes reach a certain temperature, output (in Watts) starts dropping
+- Thor-Blade Devkit and Thor-Blade Carrier Board
+  - Leveraging off the shelf products
+  - Carrier Board option uses more power than devkit, but maintains consistent cooler temperatures. AI throughput is also higher, but ends up being slightly less efficient than the devkit
+- To implement thor in the wild sage nodes, temperature control is the biggest issue, they are working on trying to find solutions for this
+  - Copper tube coil with fan which can cool like a radiator
+  - Aluminum box instead of plastic
+- Sage Supported Sensors
+  - LoRaWAN
+  - Air quality
+  - Meteorological 
+  - Pan-tilt-zoom
+  - Microphones
+  - Infrared camera
+- PyWaggle offers a message layer connection apps to sensors and between apps for sharing immediate results
+- Sensor types:
+  - Networked - PoE, sensors support HTTP interface and file-transfer protocol
+  - USB - connected and powered by USB, longer USB cable = unstable data transfer
+  - Sensor-in-the-box - wrapped with a computing device (raspberry pi) to run sensor and support data transfer
+  - Wireless - LoRaWAN, low power sensors send small amounts of data to Sage node using radio communications
+
+### Deep Dive: Sensors and Instruments Communication and Interfaces
+
+- The Communication Framework
+  - Layered model: transducer -> electrical interface -> bus/signaling -> transport/network protocol -> application protocol -> data format -> os/device interface -> application -> data product
+    - Transducer is something that converts something into something else
+  - Example for temp data product connected via USB
+    - USB connector -> USB bus -> CDS-ACM serial -> byte stream -> vendor ASCII protocol -> CSV lines -> /dev/ttyACM0 -> Python app -> temp data product
+- Ways to attach a sensor to a node
+  - Direct - sensor speaks on a bus the node exposes
+  - Networked (wired) - sensor is an IP endpoint on Ethernet
+  - Wireless (IP) - WiFi device joins a network
+  - Microcontroller-mediated - an MCU works between a raw sensor and a node
+  - Gateway-mediated - e.g., LoRaWAN
+- The farther, lower-power, or more numerous the sensors, you move further right along the progression: direct -> networked -> gateway
+- Sensor v Instrument v Others
+  - Sensor - transduces a physical phenomenon into a signal or measurement
+  - Instrument - self-contained measurement system with its own processor
+  - Actuator - takes command and changes the physical world (pan-tilt-zoom motor)
+  - Software-defined sensor - a program/app that derives measurements from other data (e.g., an ML plugin that publishes the number of cars detected from a video stream)
+- USB
+  - USB is host-centric; exactly one host initiates and devices respond
+  - Power  is limited
+  - Bandwidth and distance is very limited (10-15ft max)
+- Ethernet and IP
+  - Strong cabling advantage over USB
+  - PoE is a huge advantage for field devices (no separate power to run camera)
+  - High bandwidth, long runs (100ft)
+- WiFi
+  - Convenient but not very reliable
+  - Ideal for hard to cable spots, low-rate data sensors, and sensors with local buffering
+- Bluetooth and Bluetooth Low Energy
+  - Higher throughput
+  - Good for nearby, low-rate, battery devices
+  - Limitations: paring difficulties, short range
+- LoRaWAN
+  - Long range, tiny bandwidth
+  - LoRa = physical radio modulation, LoRaWAN = network protocol on top of LoRa
+  - LoRaWAN protocol/architecture: sensor -> gateway -> network server -> application server (your data)
+  - LoRa is the signaling, LoRaWAN is the stack
+  - Tradeoff for extended range and great battery life means slower and less data transfer
+  - Great for dispersed environmental sensing
+  - Same idea as Meshtastic
+- UART
+  - Universal Asynchronous Receiver/Transmitter
+  - The bedrock serial interface
+  - Baud rates must match, a mismatch = garbage
+- RS-232
+  - Legacy instrument signaling
+  - Point to point, one device per port
+  - Spans moderate distance (15m)
+- RS-485
+  - The industrial/environmental workhorse
+  - Long cables, multiple sensors, industrial robustness
+  - Integrate with a USB adapter
+- I2C 
+  - Board-level, short distance, addressed
+  - Board/enclosure bus
+  - Only can span inches
+- SPI
+  - Fast, short, chip-selected
+  - Much faster than I2C
+  - More devices = more wires
+- GPIO
+  - Raw digital lines
+  - Can allow apps to run in response to some signal
+- Analog Signals and the ADC
+  - All things are rooted in analog
+  - Many sensors output a continuous analog quantity not a protocol
+  - ADC = Analog to digital converter
+  - Analog is fragile
+- Review slides for breakdowns of needs/tradeoffs and best fits for specific sensor needs!
+
+
+### Some Points to Note
+
+- The goal of edge computing should be to access highest quality data from the environment and make it possible thanks for edge capabilities
+- The SGT platform is about making these tools accessible to the scientific community, the onus then is on the scientific community to determine how to collect the best quality data that is ready for scientific use
