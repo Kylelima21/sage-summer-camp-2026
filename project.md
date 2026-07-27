@@ -169,17 +169,6 @@ Both predictions were published to the Sage data pipeline via `biotic.interactio
 
 In addition to behavior classification, the plugin now includes **zero-shot species identification** using BioCLIP's text encoder. A curated list of 30 North American bird species — emphasizing mobbing-relevant corvids (crows, ravens, jays), raptors (hawks, owls, falcons, eagles), and common songbird participants (chickadees, titmice, nuthatches, woodpeckers) — is encoded as text prompts at startup. For each camera snapshot, the image embedding is compared against all species text embeddings via cosine similarity, and the top-3 species predictions are published alongside the behavior classification. This leverages BioCLIP's core strength: unlike behavior classification (where zero-shot fails), species identification is the task BioCLIP was explicitly trained on via TreeOfLife-200M.
 
-### Topics Published
-
-The plugin publishes three Sage data topics per capture cycle:
-
-| Topic                              | Value                      | Meta                                                        |
-|------------------------------------|----------------------------|-------------------------------------------------------------|
-| `biotic.interaction.bird_mobbing`  | 1 (mobbing) or 0 (none)    | camera, label, confidence, species, species_confidence, model |
-| `biotic.species.bird`             | 1 (presence indicator)     | camera, species, species_confidence, species_top3, model     |
-| `biotic.interaction.summary`      | same as bird_mobbing       | camera, label, confidence, species, model (heartbeat)         |
-
-
 ## Future Directions
 
 The long-term goals are to integrate multiple sensors (acoustic recording units, video, image) to monitor for interactions more effectively and to develop a more powerful, well trained version of this application to classify more types of biotic interactions. We would also like to scale data collection across the SGT network as well as integrate with NEON sites. The current 30-species list for zero-shot identification is curated for North American mobbing contexts and can be easily extended to cover additional species by editing the text prompt list in the plugin code — no retraining is required, only a container rebuild.
