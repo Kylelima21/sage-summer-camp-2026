@@ -454,3 +454,26 @@ We are putting attention in areas that aren’t correlated to areas of highest b
 
 - The goal of edge computing should be to access highest quality data from the environment and make it possible thanks for edge capabilities
 - The SGT platform is about making these tools accessible to the scientific community, the onus then is on the scientific community to determine how to collect the best quality data that is ready for scientific use
+
+
+
+# Day 6
+
+## Agentic PTZ Cameras by Peter
+- Need a specific agent for the PTZ cameras
+- PTZ agent is a minimalist, striped-down agent with only the tooling specific for Sage nodes
+- Need to be smaller so it can run on the edge
+- 3 pieces
+  - The brain - Reasoning LLM
+    - Local Ollama
+  - The eyes - Multi-model vision
+    - YOLO - objects/motion
+    - BioCLIP - species/taxa
+    - Gemma - semantic scene captions
+  - The hands - Sensor gateway
+    - Only thing touching the hardware
+    - Drives the PTZ
+- Interface using plain english
+- Documentation:
+  - https://sagecontinuum.org/labs/ptz-app
+
