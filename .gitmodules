@@ -1,0 +1,6 @@
+[submodule "app-tutorial"]
+	path = app-tutorial
+	url = https://github.com/Kylelima21/app-tutorial.git
+[submodule "BISONN"]
+	path = BISONN
+	url = https://github.com/Kylelima21/BISONN.git
