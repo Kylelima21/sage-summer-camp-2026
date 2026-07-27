@@ -119,20 +119,6 @@ The best overall model was **BioCLIP 2.5 + Linear SVM**, achieving 98.8% accurac
 
 The confusion matrix for the best model (BioCLIP 2.5 + Linear SVM) on the 254-image test set shows strong performance on both classes — 14 of 15 mobbing images correctly detected (93.3% recall), with only 2 false positives among 239 `none` images (99.2% specificity):
 
-```
-                mobbing    none
-     mobbing        14        1
-        none          2      237
-```
-
-</br>
-
-![Confusion matrix for the best model (BioCLIP 2.5 + Linear SVM).](assets/best_model_confusion.png)
-
-</br>
-
-A comprehensive view of all backbone x head combinations reveals consistent patterns:
-
 </br>
 
 ![Confusion matrices for all 9 combinations (3 backbones x 3 heads) plus BioCLIP zero-shot. BioCLIP 2.5 occupies the top row, DINOv3 Large the middle, DINOv3 Small the bottom.](assets/all_confusion_matrices.png)
